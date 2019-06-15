@@ -1,0 +1,37 @@
+{
+  "name": "@wesleytodd/create-package",
+  "version": "0.0.0",
+  "description": "Scaffold a package",
+  "author": "Wes Todd <wes@wesleytodd.com>",
+  "keywords": [
+    "scaffold",
+    "package",
+    "git",
+    "module",
+    "package.json",
+    "readme",
+    "mocha",
+    "standard"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wesleytodd/create-pacakge.git"
+  },
+  "scripts": {
+    "test": "standard && mocha",
+    "prepublushOnly": "npm t",
+    "postpublish": "git push origin && git push origin --tags"
+  },
+  "dependencies": {
+    "cptmpl": "0.0.4",
+    "create-git": "0.0.3",
+    "create-package-json": "0.0.8"
+  },
+  "devDependencies": {
+    "fs-extra": "^8.0.1",
+    "mocha": "^6.1.4",
+    "standard": "^12.0.1"
+  }
+}
