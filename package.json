@@ -1,6 +1,6 @@
 {
   "name": "@wesleytodd/create-package",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Scaffold a package",
   "author": "Wes Todd <wes@wesleytodd.com>",
   "keywords": [
