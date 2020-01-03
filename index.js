@@ -41,7 +41,7 @@ module.exports = create({
     }
   })
 
-  await cptmpl(tmplPath('.npmrc'), path.join(opts.directory, '.npmrc'))
+  await cptmpl(tmplPath('npmrc'), path.join(opts.directory, '.npmrc'))
   const pkg = await createPackageJson(opts)
   await createGit({
     ...opts,
