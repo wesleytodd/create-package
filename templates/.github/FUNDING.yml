@@ -1,1 +1,1 @@
-github: [wesleytodd]
+github: [<%- githubOrg %>]
