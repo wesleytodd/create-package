@@ -20,23 +20,27 @@
     "url": "git@github.com:wesleytodd/create-pacakge.git"
   },
   "bin": {
-    "create-package": "./bin/create-package"
+    "create-package": "bin/create-package"
   },
   "scripts": {
-    "debug": "mocha --inspect --inspect-brk",
-    "test": "standard && mocha",
-    "prepublushOnly": "npm t",
+    "test": "standard && mocha --timeout=60000",
+    "test:debug": "mocha --inspect --inspect-brk --timeout=0",
+    "release": "npm t && standard-version && npm publish",
     "postpublish": "git push origin && git push origin --tags"
   },
   "dependencies": {
-    "@pkgjs/create": "^0.2.0",
     "cptmpl": "0.0.5",
-    "create-git": "^0.1.0",
-    "create-package-json": "^0.1.0"
+    "create-git": "^1.0.0-2",
+    "create-package-json": "^1.0.0-2",
+    "loggerr": "^3.0.0-3",
+    "opta": "0.0.6",
+    "semver": "^7.3.2"
   },
   "devDependencies": {
     "fs-extra": "^8.0.1",
+    "fs-test-fixtures": "^0.1.3",
     "mocha": "^6.2.2",
-    "standard": "^14.3.1"
+    "standard": "^14.3.1",
+    "standard-version": "^9.0.0"
   }
 }

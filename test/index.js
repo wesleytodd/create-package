@@ -1,21 +1,39 @@
 'use strict'
-const { suite, test, beforeEach } = require('mocha')
-const path = require('path')
-const fs = require('fs-extra')
+const { suite, test, before } = require('mocha')
 const pkg = require('../package.json')
+const fixtures = require('fs-test-fixtures')
 const createPackage = require('..')
 
-const TMP_DIR = path.join(__dirname, 'fixtures', 'tmp')
+const barePrompt = {
+  promptor: () => async (prompts) => {
+    // Set defaults from prompts
+    const out = await Promise.all(prompts.map(async (p) => {
+      if (!p.when) {
+        return []
+      }
+      let ret = typeof p.default === 'function' ? p.default({}) : p.default
+      if (ret && typeof ret.then === 'function') {
+        ret = await ret
+      }
+      return [p.name, ret]
+    }))
+    return Object.fromEntries(out)
+  }
+}
 
 suite(pkg.name, () => {
-  beforeEach(() => fs.remove(TMP_DIR))
+  let fix
+  before(() => {
+    fix = fixtures()
+  })
 
   test('scaffolds a package', async function () {
-    this.timeout(0)
+    await fix.setup()
     await createPackage({
-      prompt: false,
+      cwd: fix.TMP,
+      push: false,
       silent: true,
-      directory: TMP_DIR
-    })
+      githubRepo: '__tmp'
+    }, barePrompt)
   })
 })
